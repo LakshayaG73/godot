@@ -31,6 +31,7 @@
 #include "resource_importer_texture_atlas.h"
 
 #include "atlas_import_failed.xpm"
+#include "core/config/project_settings.h"
 #include "core/io/file_access.h"
 #include "core/io/image_loader.h"
 #include "core/io/resource_saver.h"
@@ -278,7 +279,7 @@ Error ResourceImporterTextureAtlas::import_group_file(const String &p_group_file
 
 	//pack the charts
 	int atlas_width, atlas_height;
-	EditorAtlasPacker::chart_pack(charts, atlas_width, atlas_height);
+	EditorAtlasPacker::chart_pack(charts, atlas_width, atlas_height, (int)GLOBAL_GET("editor/import/atlas_max_width"));
 
 	//blit the atlas
 	Ref<Image> new_atlas = Image::create_empty(atlas_width, atlas_height, false, Image::FORMAT_RGBA8);
